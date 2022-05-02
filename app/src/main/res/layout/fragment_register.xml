@@ -54,10 +54,12 @@
                 android:textColor="@color/white" />
 
             <EditText
+                android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_edit"
+                android:inputType="textEmailAddress"
                 android:hint="email@email.com"
                 android:padding="14dp"
                 android:textSize="14sp" />
@@ -70,6 +72,7 @@
                 android:textColor="@color/white" />
 
             <EditText
+                android:id="@+id/edtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -80,6 +83,7 @@
                 android:textSize="14sp" />
 
             <android.widget.Button
+                android:id="@+id/btnRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -87,6 +91,16 @@
                 android:text="Criar conta"
                 android:textAllCaps="false"
                 android:textColor="@color/color_default" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:visibility="invisible"
+                tools:visibility="visible"
+                android:layout_gravity="center_horizontal"
+                android:indeterminateTint="@color/white"/>
 
         </LinearLayout>
 
