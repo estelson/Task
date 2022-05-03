@@ -50,7 +50,7 @@ class RecoverAccountFragment: Fragment() {
             recoverAccountUser(email)
         } else {
             binding.edtEmail.requestFocus()
-            binding.edtEmail.error = "Informe seu e-Mail"
+            binding.edtEmail.error = getString(R.string.text_informe_seu_email)
         }
     }
 
@@ -58,9 +58,9 @@ class RecoverAccountFragment: Fragment() {
         auth.sendPasswordResetEmail(email)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(requireContext(), "Enviamos um e-mail de recuperação de senha para $email", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.success_recover_email_msg) + " $email", Toast.LENGTH_LONG).show()
                 } else {
-                    Toast.makeText(requireContext(), "Erro ao enviar um e-mail de recuperação de senha para $email. Motivo: ${task.exception.toString()}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.error_recover_email_msg) + " $email. " + getString(R.string.error_recover_motivo_email_msg) + " ${task.exception.toString()}", Toast.LENGTH_LONG).show()
                 }
 
                 binding.progressBar.isVisible = false
