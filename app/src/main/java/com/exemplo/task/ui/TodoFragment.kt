@@ -102,7 +102,38 @@ class TodoFragment: Fragment() {
 
                 Toast.makeText(requireContext(), getText(R.string.msg_success_delete_task), Toast.LENGTH_LONG).show()
             }
+
+            TaskAdapter.SELECT_EDIT -> {
+                val action = HomeFragmentDirections.actionHomeFragmentToTaskFormFragment(task)
+
+                findNavController().navigate(action)
+            }
+
+            TaskAdapter.SELECT_NEXT -> {
+                task.status = 1
+
+                updateTask(task)
+            }
         }
+    }
+
+    private fun updateTask(task: Task) {
+        FirebaseHelper.getDatabase()
+            .child("task")
+            .child(FirebaseHelper.getIdUser() ?: "")
+            .child(task.id)
+            .setValue(task)
+            .addOnCompleteListener { task ->
+                if(task.isSuccessful) {
+                    Toast.makeText(requireContext(), getString(R.string.message_on_complete_edit_task), Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(requireContext(), getString(R.string.error_on_failure_edit_task, task.exception?.message.toString()), Toast.LENGTH_LONG).show()
+                }
+            }.addOnFailureListener { error ->
+                binding.progressBar.isVisible = false
+
+                Toast.makeText(requireContext(), getString(R.string.error_on_failure_edit_task, error.message.toString()), Toast.LENGTH_LONG).show()
+            }
     }
 
     private fun deleteTask(task: Task) {

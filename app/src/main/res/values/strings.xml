@@ -48,6 +48,7 @@
     <!-- Tasks List -->
     <string name="text_info_no_task_registered">Nenhuma tarefa cadastrada</string>
     <string name="msg_success_delete_task">Tarefa excluída com sucesso</string>
+    <string name="msg_success_edit_task">Tarefa alterada com sucesso</string>
 
     <!-- New/Add Task Fragment -->
     <string name="text_add_new_task_title">Incluir tarefa</string>

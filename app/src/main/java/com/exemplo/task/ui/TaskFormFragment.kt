@@ -8,12 +8,15 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.exemplo.task.R
 import com.exemplo.task.databinding.FragmentTaskFormBinding
 import com.exemplo.task.helper.FirebaseHelper
 import com.exemplo.task.model.Task
 
 class TaskFormFragment: Fragment() {
+
+    private val args: TaskFormFragmentArgs by navArgs()
 
     private var _binding: FragmentTaskFormBinding? = null
     private val binding get() = _binding!!
@@ -33,6 +36,47 @@ class TaskFormFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initListeners()
+
+        getArgs()
+    }
+
+    private fun getArgs() {
+        args.task?.let { tsk: Task ->
+            if(tsk != null) {
+                task = tsk
+
+                configTask()
+            }
+        }
+    }
+
+    private fun configTask() {
+        newTask = false
+
+        taskStatus = task.status
+        binding.textToolbar.text = getString(R.string.text_edit_task_title)
+
+        binding.edtTaskDescription.setText(task.taskDescription)
+
+        setStatus()
+    }
+
+    private fun setStatus() {
+        binding.radioGroup.check(
+            when(task.status) {
+                0 -> {
+                    R.id.rbTodo
+                }
+
+                1 -> {
+                    R.id.rbDoing
+                }
+
+                else -> {
+                    R.id.rbDone
+                }
+            }
+        )
     }
 
     private fun initListeners() {
