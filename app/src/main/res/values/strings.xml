@@ -19,6 +19,13 @@
     <string name="success_recover_email_msg">Enviamos um e-mail de recuperação de senha para \"%1$s\"</string>
     <string name="text_button_enviar">Enviar</string>
 
+    <!-- ItemAdapter -->
+    <string name="back_button_content_description">Botão para retornar a tarefa ao status anterior</string>
+    <string name="next_button_content_description">Botão para transferir a tarefa ao próximo status</string>
+    <string name="remove_button_text">Excluir</string>
+    <string name="edit_button_text">Editar</string>
+    <string name="details_button_text">Detalhar</string>
+
     <!-- TodoFragment -->
     <string name="text_todo">A fazer</string>
     <string name="loading_todo_tasks">Carregando tarefas <b>a fazer</b>…</string>
