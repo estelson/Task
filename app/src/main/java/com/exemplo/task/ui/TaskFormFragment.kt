@@ -1,58 +1,112 @@
 package com.exemplo.task.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.exemplo.task.R
+import com.exemplo.task.databinding.FragmentTaskFormBinding
+import com.exemplo.task.helper.FirebaseHelper
+import com.exemplo.task.model.Task
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [TaskFormFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class TaskFormFragment: Fragment() {
 
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentTaskFormBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private lateinit var task: Task
+    private var newTask: Boolean = true
+
+    private var taskStatus: Int = 0
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? { // Inflate the layout for this fragment
+        _binding = FragmentTaskFormBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initListeners()
+    }
+
+    private fun initListeners() {
+        binding.btnSave.setOnClickListener {
+            validateData()
         }
-    }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? { // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_task_form, container, false)
-    }
-
-    companion object {
-
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TaskFormFragment.
-         */ // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) = TaskFormFragment().apply {
-            arguments = Bundle().apply {
-                putString(ARG_PARAM1, param1)
-                putString(ARG_PARAM2, param2)
+        binding.radioGroup.setOnCheckedChangeListener { _, id ->
+            taskStatus = when(id) {
+                R.id.rbTodo -> 0
+                R.id.rbDoing -> 1
+                else -> 2
             }
         }
     }
+
+    private fun validateData() {
+        val taskDescription: String = binding.edtTaskDescription.text.toString().trim()
+        if(taskDescription.isNotEmpty()) {
+            binding.progressBar.isVisible = true
+
+            if(newTask) {
+                task = Task()
+            }
+
+            task.taskDescription = taskDescription
+            task.status = taskStatus
+
+            saveTask()
+        } else {
+            binding.edtTaskDescription.requestFocus()
+            binding.edtTaskDescription.error = getString(R.string.error_empty_text_description)
+        }
+    }
+
+    private fun saveTask() {
+        FirebaseHelper.getDatabase()
+            .child("task")
+            .child(FirebaseHelper.getIdUser() ?: "")
+            .child(task.id)
+            .setValue(task)
+            .addOnCompleteListener { task ->
+                if(task.isSuccessful) {
+                    if(newTask) {
+                        findNavController().popBackStack()
+
+                        Toast.makeText(requireContext(), getString(R.string.message_on_complete_add_task), Toast.LENGTH_LONG).show()
+                    } else {
+                        binding.progressBar.isVisible = false
+
+                        Toast.makeText(requireContext(), getString(R.string.message_on_complete_edit_task), Toast.LENGTH_LONG).show()
+                    }
+                } else {
+                    if(newTask) {
+                        Toast.makeText(requireContext(), getString(R.string.error_on_failure_add_task, task.exception?.message.toString()), Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(requireContext(), getString(R.string.error_on_failure_edit_task, task.exception?.message.toString()), Toast.LENGTH_LONG).show()
+                    }
+                }
+            }.addOnFailureListener { error ->
+                binding.progressBar.isVisible = false
+
+                if(newTask) {
+                    Toast.makeText(requireContext(), getString(R.string.error_on_failure_add_task, error.message.toString()), Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(requireContext(), getString(R.string.error_on_failure_edit_task, error.message.toString()), Toast.LENGTH_LONG).show()
+                }
+            }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        _binding = null
+    }
+
 }

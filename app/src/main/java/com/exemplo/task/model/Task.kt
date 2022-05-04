@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 data class Task(
 
     var id: String = "",
-    var title: String = "",
+    var taskDescription: String = "",
     var status: Int = 0
 
 ): Parcelable {

@@ -22,7 +22,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textTaskTitle"
+                android:id="@+id/textTaskDescription"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
@@ -67,7 +67,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/btnDetails"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/btnDelete"
-                app:layout_constraintTop_toBottomOf="@+id/textTaskTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/textTaskDescription" />
 
             <TextView
                 android:id="@+id/btnDetails"

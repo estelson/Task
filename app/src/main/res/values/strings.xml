@@ -29,26 +29,46 @@
     <!-- TodoFragment -->
     <string name="text_todo">A fazer</string>
     <string name="loading_todo_tasks">Carregando tarefas <b>a fazer</b>…</string>
+    <string name="text_info_no_tasks_found_with_todo_status">Nenhuma tarefa encontrada com o status <b>a fazer</b></string>
+    <string name="error_getting_todo_tasks_list">Erro ao obter lista de tarefas <b>a fazer</b></string>
     <string name="add_task_button_content_description">Botão para adicionar tarefa</string>
 
     <!-- DoingFragment -->
     <string name="text_doing">Fazendo</string>
     <string name="loading_doing_tasks">Carregando tarefas <b>fazendo</b>…</string>
+    <string name="text_info_no_tasks_found_with_doing_status">Nenhuma tarefa encontrada com o status <b>fazendo</b></string>
+    <string name="error_getting_doing_tasks_list">Erro ao obter lista de tarefas <b>fazendo</b></string>
 
     <!-- DoneFragment -->
     <string name="text_done">Feitas</string>
     <string name="loading_done_tasks">Carregando tarefas <b>feitas</b>…</string>
+    <string name="text_info_no_tasks_found_with_done_status">Nenhuma tarefa encontrada com o status <b>feita</b></string>
+    <string name="error_getting_done_tasks_list">Erro ao obter lista de tarefas <b>feita</b></string>
+
+    <!-- Tasks List -->
+    <string name="text_info_no_task_registered">Nenhuma tarefa cadastrada</string>
+    <string name="msg_success_delete_task">Tarefa excluída com sucesso</string>
 
     <!-- New/Add Task Fragment -->
     <string name="text_add_new_task_title">Incluir tarefa</string>
     <string name="text_edit_task_title">Editar tarefa</string>
-    <string name="text_task">Tarefa</string>
+    <string name="text_task_description">Descrição</string>
     <string name="text_hint_task">Criar alguma tarefa</string>
     <string name="text_status_task">Status</string>
     <string name="text_save_button">Gravar</string>
 
+    <string name="message_on_complete_add_task">Tarefa incluída com sucesso</string>
+    <string name="message_on_complete_edit_task">Tarefa alterada com sucesso</string>
+    <string name="message_on_complete_delete_task">Tarefa excluída com sucesso</string>
+
+    <string name="error_on_failure_add_task">Erro ao incluir a tarefa. Motivo: %1$s</string>
+    <string name="error_on_failure_edit_task">Erro ao alterar a tarefa. Motivo: %1$s</string>
+    <string name="error_on_failure_delete_task">Erro ao excluir a tarefa. Motivo: %1$s</string>
+
+    <string name="error_empty_text_description">Informe a descrição da tarefa</string>
+
     <!-- Generic errors -->
-    <string name="generic_error">Ocorreu um erro. Por favor tente novamente mais tarde</string>
+    <string name="generic_error_try_later">Ocorreu um erro. Por favor tente novamente mais tarde</string>
 
     <!-- Firebase Authentication Errors -->
     <string name="fb_auth_error_account_not_registered">Nenhuma conta encontrada com este e-mail</string>

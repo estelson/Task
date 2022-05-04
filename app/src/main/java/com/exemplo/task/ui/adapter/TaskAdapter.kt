@@ -26,7 +26,6 @@ class TaskAdapter(
         val SELECT_NEXT: Int = 5
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(
             AdapterItemBinding.inflate(
@@ -38,7 +37,7 @@ class TaskAdapter(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val task = taskList[position]
 
-        holder.binding.textTaskTitle.text = task.title
+        holder.binding.textTaskDescription.text = task.taskDescription
 
         holder.binding.btnDelete.setOnClickListener { taskSelected(task, SELECT_REMOVE) }
         holder.binding.btnEdit.setOnClickListener { taskSelected(task, SELECT_EDIT) }
@@ -80,7 +79,9 @@ class TaskAdapter(
         }
     }
 
-    override fun getItemCount() = taskList.size
+    override fun getItemCount(): Int {
+        return taskList.size
+    }
 
     inner class MyViewHolder(val binding: AdapterItemBinding): RecyclerView.ViewHolder(binding.root)
 

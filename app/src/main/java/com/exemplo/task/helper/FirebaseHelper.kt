@@ -38,7 +38,7 @@ class FirebaseHelper {
                 }
 
                 else -> {
-                    R.string.generic_error
+                    R.string.generic_error_try_later
                 }
             }
         }
