@@ -31,6 +31,9 @@
             app:destination="@id/authentication"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_homeFragment_to_taskFormFragment"
+            app:destination="@id/taskFormFragment" />
     </fragment>
     <navigation android:id="@+id/authentication"
         app:startDestination="@id/loginFragment">
@@ -62,4 +65,9 @@
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
     </navigation>
+    <fragment
+        android:id="@+id/taskFormFragment"
+        android:name="com.exemplo.task.ui.TaskFormFragment"
+        android:label="fragment_task_form"
+        tools:layout="@layout/fragment_task_form" />
 </navigation>

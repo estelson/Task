@@ -4,14 +4,10 @@
     <!-- Generics -->
     <string name="text_email">E-mail</string>
     <string name="text_password">Senha</string>
-    <string name="text_informe_seu_email">Informe seu e-mail</string>
-    <string name="text_informe_sua_senha">Informe sua senha</string>
+    <string name="text_inform_your_email">Informe seu e-mail</string>
+    <string name="text_inform_your_password">Informe sua senha</string>
     <string name="text_create_account">Criar conta</string>
     <string name="text_recover_account">Recuperar conta</string>
-
-    <string name="text_todo">A fazer</string>
-    <string name="text_doing">Fazendo</string>
-    <string name="text_done">Feito</string>
 
     <!-- LoginFragment -->
     <string name="text_button_login_fragment">Login</string>
@@ -20,9 +16,38 @@
     <string name="text_button_register_fragment">Criar conta</string>
 
     <!-- RecoverAccountFragment -->
-    <string name="success_recover_email_msg">Enviamos um e-mail de recuperação de senha para</string>
-    <string name="error_recover_email_msg">Erro ao enviar um e-mail de recuperação de senha para</string>
-    <string name="error_recover_motivo_email_msg">Motivo:</string>
+    <string name="success_recover_email_msg">Enviamos um e-mail de recuperação de senha para \"%1$s\"</string>
     <string name="text_button_enviar">Enviar</string>
+
+    <!-- TodoFragment -->
+    <string name="text_todo">A fazer</string>
+    <string name="loading_todo_tasks">Carregando tarefas <b>a fazer</b>…</string>
+    <string name="add_task_button_content_description">Botão para adicionar tarefa</string>
+
+    <!-- DoingFragment -->
+    <string name="text_doing">Fazendo</string>
+    <string name="loading_doing_tasks">Carregando tarefas <b>fazendo</b>…</string>
+
+    <!-- DoneFragment -->
+    <string name="text_done">Feitas</string>
+    <string name="loading_done_tasks">Carregando tarefas <b>feitas</b>…</string>
+
+    <!-- New/Add Task Fragment -->
+    <string name="text_add_new_task_title">Incluir tarefa</string>
+    <string name="text_edit_task_title">Editar tarefa</string>
+    <string name="text_task">Tarefa</string>
+    <string name="text_hint_task">Criar alguma tarefa</string>
+    <string name="text_status_task">Status</string>
+    <string name="text_save_button">Gravar</string>
+
+    <!-- Generic errors -->
+    <string name="generic_error">Ocorreu um erro. Por favor tente novamente mais tarde</string>
+
+    <!-- Firebase Authentication Errors -->
+    <string name="fb_auth_error_account_not_registered">Nenhuma conta encontrada com este e-mail</string>
+    <string name="fb_auth_error_invalid_email">Insira um e-mail válido</string>
+    <string name="fb_auth_error_invalid_password">Senha inválida, tente novamente</string>
+    <string name="fb_auth_error_email_already_in_use">Este e-mail já está em uso</string>
+    <string name="fb_auth_error_strong_password">A senha fornecida é inválida. Senhas devem ter ao menos 6 caracteres</string>
 
 </resources>

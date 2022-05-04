@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_edit"
-                android:hint="@string/text_informe_seu_email"
+                android:hint="@string/text_inform_your_email"
                 android:inputType="textEmailAddress"
                 android:padding="14dp"
                 android:textSize="14sp" />
