@@ -4,14 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import com.exemplo.task.R
 import com.exemplo.task.databinding.FragmentRecoverAccountBinding
 import com.exemplo.task.helper.BaseFragment
 import com.exemplo.task.helper.FirebaseHelper
 import com.exemplo.task.helper.initToolbar
+import com.exemplo.task.helper.showBottomSheet
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -55,8 +54,9 @@ class RecoverAccountFragment: BaseFragment() {
 
             sendPasswordResetEmail(email)
         } else {
-            binding.edtEmail.requestFocus()
-            binding.edtEmail.error = getString(R.string.text_inform_your_email)
+//            binding.edtEmail.requestFocus()
+//            binding.edtEmail.error = getString(R.string.text_inform_your_email)
+            showBottomSheet(null, R.string.text_button_bottom_sheet, getString(R.string.text_inform_your_email))
         }
     }
 
@@ -64,9 +64,11 @@ class RecoverAccountFragment: BaseFragment() {
         auth.sendPasswordResetEmail(email)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(requireContext(), getString(R.string.success_recover_email_msg, email), Toast.LENGTH_LONG).show()
+//                    Toast.makeText(requireContext(), getString(R.string.success_recover_email_msg, email), Toast.LENGTH_LONG).show()
+                    showBottomSheet(null, R.string.text_ok, getString(R.string.success_recover_email_msg, email))
                 } else {
-                    Toast.makeText(requireContext(), FirebaseHelper.validateErrors(task.exception?.message.toString()), Toast.LENGTH_LONG).show()
+//                    Toast.makeText(requireContext(), FirebaseHelper.validateErrors(task.exception?.message.toString()), Toast.LENGTH_LONG).show()
+                    showBottomSheet(null, R.string.text_button_bottom_sheet, getString(FirebaseHelper.validateErrors(task.exception?.message.toString())))
                 }
 
                 binding.progressBar.isVisible = false

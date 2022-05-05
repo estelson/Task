@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.exemplo.task.R
 import com.exemplo.task.databinding.FragmentDoingBinding
 import com.exemplo.task.helper.FirebaseHelper
+import com.exemplo.task.helper.getFormatedString
+import com.exemplo.task.helper.showBottomSheet
 import com.exemplo.task.model.Task
 import com.exemplo.task.ui.adapter.TaskAdapter
 import com.google.firebase.database.DataSnapshot
@@ -71,7 +74,8 @@ class DoingFragment: Fragment() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(requireContext(), getText(R.string.error_getting_doing_tasks_list), Toast.LENGTH_LONG).show()
+//                    Toast.makeText(requireContext(), getText(R.string.error_getting_doing_tasks_list), Toast.LENGTH_LONG).show()
+                    showBottomSheet(null, R.string.text_button_bottom_sheet, getFormatedString(R.string.error_getting_doing_tasks_list))
                 }
             })
     }
@@ -92,7 +96,8 @@ class DoingFragment: Fragment() {
             TaskAdapter.SELECT_REMOVE -> {
                 deleteTask(task)
 
-                Toast.makeText(requireContext(), getText(R.string.msg_success_delete_task), Toast.LENGTH_LONG).show()
+//                Toast.makeText(requireContext(), getText(R.string.msg_success_delete_task), Toast.LENGTH_LONG).show()
+                showBottomSheet(R.string.text_success, R.string.text_ok, getString(R.string.msg_success_delete_task))
             }
 
             TaskAdapter.SELECT_EDIT -> {
@@ -123,14 +128,17 @@ class DoingFragment: Fragment() {
             .setValue(task)
             .addOnCompleteListener { task ->
                 if(task.isSuccessful) {
-                    Toast.makeText(requireContext(), getString(R.string.message_on_complete_edit_task), Toast.LENGTH_LONG).show()
+//                    Toast.makeText(requireContext(), getString(R.string.message_on_complete_edit_task), Toast.LENGTH_LONG).show()
+                    showBottomSheet(R.string.text_success, R.string.text_ok, getString(R.string.message_on_complete_edit_task))
                 } else {
-                    Toast.makeText(requireContext(), getString(R.string.error_on_failure_edit_task, task.exception?.message.toString()), Toast.LENGTH_LONG).show()
+//                    Toast.makeText(requireContext(), getString(R.string.error_on_failure_edit_task, task.exception?.message.toString()), Toast.LENGTH_LONG).show()
+                    showBottomSheet(null, R.string.text_button_bottom_sheet, getString(R.string.error_on_failure_edit_task, task.exception?.message.toString()))
                 }
             }.addOnFailureListener { error ->
                 binding.progressBar.isVisible = false
 
-                Toast.makeText(requireContext(), getString(R.string.error_on_failure_edit_task, error.message.toString()), Toast.LENGTH_LONG).show()
+//                Toast.makeText(requireContext(), getString(R.string.error_on_failure_edit_task, error.message.toString()), Toast.LENGTH_LONG).show()
+                showBottomSheet(null, R.string.text_button_bottom_sheet, getString(R.string.error_on_failure_edit_task, error.message.toString()))
             }
     }
 

@@ -9,6 +9,9 @@
     <string name="text_create_account">Criar conta</string>
     <string name="text_recover_account">Recuperar conta</string>
 
+    <string name="text_ok">Ok</string>
+    <string name="text_success">Sucesso</string>
+
     <!-- LoginFragment -->
     <string name="text_button_login_fragment">Login</string>
 
@@ -43,7 +46,7 @@
     <string name="text_done">Feitas</string>
     <string name="loading_done_tasks">Carregando tarefas <b>feitas</b>…</string>
     <string name="text_info_no_tasks_found_with_done_status">Nenhuma tarefa encontrada com o status <b>feita</b></string>
-    <string name="error_getting_done_tasks_list">Erro ao obter lista de tarefas <b>feita</b></string>
+    <string name="error_getting_done_tasks_list">Erro ao obter lista de tarefas <b>feitas</b></string>
 
     <!-- Tasks List -->
     <string name="text_info_no_task_registered">Nenhuma tarefa cadastrada</string>
@@ -78,4 +81,7 @@
     <string name="fb_auth_error_email_already_in_use">Este e-mail já está em uso</string>
     <string name="fb_auth_error_strong_password">A senha fornecida é inválida. Senhas devem ter ao menos 6 caracteres</string>
 
+    <!-- BottomSheet -->
+    <string name="text_title_bottom_sheet">Atenção</string>
+    <string name="text_button_bottom_sheet">Entendi</string>
 </resources>
