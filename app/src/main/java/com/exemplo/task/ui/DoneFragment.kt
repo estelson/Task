@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.exemplo.task.R
 import com.exemplo.task.databinding.FragmentDoneBinding
+import com.exemplo.task.helper.BaseFragment
 import com.exemplo.task.helper.FirebaseHelper
 import com.exemplo.task.model.Task
 import com.exemplo.task.ui.adapter.TaskAdapter
@@ -18,7 +18,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 
-class DoneFragment: Fragment() {
+class DoneFragment: BaseFragment() {
 
     private var _binding: FragmentDoneBinding? = null
     private val binding get() = _binding!!

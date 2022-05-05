@@ -11,10 +11,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.exemplo.task.R
 import com.exemplo.task.databinding.FragmentTaskFormBinding
+import com.exemplo.task.helper.BaseFragment
 import com.exemplo.task.helper.FirebaseHelper
+import com.exemplo.task.helper.initToolbar
 import com.exemplo.task.model.Task
 
-class TaskFormFragment: Fragment() {
+class TaskFormFragment: BaseFragment() {
 
     private val args: TaskFormFragmentArgs by navArgs()
 
@@ -34,6 +36,8 @@ class TaskFormFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initToolbar(binding.toolbar)
 
         initListeners()
 
@@ -96,6 +100,8 @@ class TaskFormFragment: Fragment() {
     private fun validateData() {
         val taskDescription: String = binding.edtTaskDescription.text.toString().trim()
         if(taskDescription.isNotEmpty()) {
+            hideKeyboard()
+
             binding.progressBar.isVisible = true
 
             if(newTask) {

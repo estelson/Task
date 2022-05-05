@@ -1,22 +1,22 @@
 package com.exemplo.task.ui.auth
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.exemplo.task.R
 import com.exemplo.task.databinding.FragmentRegisterBinding
+import com.exemplo.task.helper.BaseFragment
 import com.exemplo.task.helper.FirebaseHelper
+import com.exemplo.task.helper.initToolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class RegisterFragment: Fragment() {
+class RegisterFragment: BaseFragment() {
 
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
@@ -31,6 +31,8 @@ class RegisterFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initToolbar(binding.toolbar)
 
         // Initialize Firebase Auth
         auth = Firebase.auth
@@ -50,6 +52,8 @@ class RegisterFragment: Fragment() {
 
         if(email.isNotEmpty()) {
             if(password.isNotEmpty()) {
+                hideKeyboard()
+
                 binding.progressBar.isVisible = true
 
                 registerUser(email, password)

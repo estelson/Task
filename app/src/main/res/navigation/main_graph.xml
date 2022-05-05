@@ -72,8 +72,8 @@
         tools:layout="@layout/fragment_task_form" >
         <argument
             android:name="task"
-            app:argType="com.exemplo.task.model.Task"
             android:defaultValue="@null"
+            app:argType="com.exemplo.task.model.Task"
             app:nullable="true" />
     </fragment>
 </navigation>

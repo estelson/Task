@@ -9,12 +9,14 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.exemplo.task.R
 import com.exemplo.task.databinding.FragmentRecoverAccountBinding
+import com.exemplo.task.helper.BaseFragment
 import com.exemplo.task.helper.FirebaseHelper
+import com.exemplo.task.helper.initToolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class RecoverAccountFragment: Fragment() {
+class RecoverAccountFragment: BaseFragment() {
 
     private var _binding: FragmentRecoverAccountBinding? = null
     private val binding get() = _binding!!
@@ -29,6 +31,8 @@ class RecoverAccountFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initToolbar(binding.toolbar)
 
         auth = Firebase.auth
 
@@ -45,6 +49,8 @@ class RecoverAccountFragment: Fragment() {
         val email = binding.edtEmail.text.toString().trim()
 
         if(email.isNotEmpty()) {
+            hideKeyboard()
+
             binding.progressBar.isVisible = true
 
             sendPasswordResetEmail(email)
